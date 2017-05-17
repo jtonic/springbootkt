@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean
 class SpringbootktApplication {
     @Bean
     fun init(
-            @Autowired serverProperties: ServerProperties,
+            @Autowired serverProperties: ServerPropertiesJava,
             @Autowired printService: PrinterService) = CommandLineRunner {
         printService.print("===============")
         printService.print("===============")
