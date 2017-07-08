@@ -9,5 +9,8 @@ import org.springframework.stereotype.Service
 
 @Service class PrinterService {
 
-    fun print(msg: String) = println(msg)
+    fun print(msg: String) {
+        println(msg)
+//        TODO("Implement this")
+    }
 }

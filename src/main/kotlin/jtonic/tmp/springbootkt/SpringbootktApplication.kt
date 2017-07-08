@@ -8,19 +8,27 @@ import org.springframework.context.annotation.Bean
 
 @SpringBootApplication
 class SpringbootktApplication {
+
     @Bean
     fun init(
             @Autowired serverProperties: ServerPropertiesJava,
-            @Autowired printService: PrinterService) = CommandLineRunner {
-        printService.print("===============")
-        printService.print("===============")
-        printService.print("Antonel")
-        printService.print("===============")
-        printService.print("===============")
+            @Autowired printerService: PrinterService,
+            @Autowired printService: PrintService) = CommandLineRunner {
+        printerService.print("===============")
+        printerService.print("===============")
+        printerService.print("Antonel")
+        printerService.print("===============")
+        printerService.print("===============")
+        println("printService.name = ${printService.name}")
+        printService.print("This is me")
         println("Server name: " + serverProperties.name)
     }
-}
 
-fun main(args: Array<String>) {
-    SpringApplication.run(SpringbootktApplication::class.java, *args)
+    companion object {
+
+        @JvmStatic fun main(args: Array<String>) {
+            SpringApplication.run(SpringbootktApplication::class.java, *args)
+        }
+    }
+
 }

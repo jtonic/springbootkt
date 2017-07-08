@@ -11,21 +11,16 @@
 	<name>springbootkt</name>
 	<description>Demo project for Spring Boot</description>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.3.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-
 	<properties>
 		<kotlin.compiler.incremental>true</kotlin.compiler.incremental>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<kotlin.version>1.1.2-2</kotlin.version>
+		<kotlin.version>1.1.3-2</kotlin.version>
 		<kotlin.compiler.incremental>true</kotlin.compiler.incremental>
-	</properties>
+    <guava.version>20.0</guava.version>
+    <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
+  </properties>
 
 	<dependencies>
 		<dependency>
@@ -65,7 +60,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>20.0</version>
+			<version>${guava.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -74,16 +69,19 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <mainClass>jtonic.tmp.springbootkt.SpringbootktApplication</mainClass>
+        </configuration>
 			</plugin>
 			<plugin>
 				<artifactId>kotlin-maven-plugin</artifactId>
 				<groupId>org.jetbrains.kotlin</groupId>
-				<version>${kotlin.version}</version>
+        <version>1.1.3-2</version>
 				<configuration>
 					<compilerPlugins>
 						<plugin>spring</plugin>
 						<plugin>all-open</plugin>
-						<!--<plugin>no-arg</plugin>-->
+						<plugin>no-arg</plugin>
 					</compilerPlugins>
 					<jvmTarget>1.8</jvmTarget>
 				</configuration>
@@ -102,7 +100,7 @@
 								<annotationProcessorPath>
 									<groupId>org.springframework.boot</groupId>
 									<artifactId>spring-boot-configuration-processor</artifactId>
-									<version>1.5.3.RELEASE</version>
+									<version>${spring-boot.version}</version>
 								</annotationProcessorPath>
 							</annotationProcessorPaths>
 						</configuration>
@@ -123,25 +121,16 @@
 					</execution>
 				</executions>
 				<dependencies>
-					<dependency>
-						<groupId>org.jetbrains.kotlin</groupId>
-						<artifactId>kotlin-maven-allopen</artifactId>
-						<version>${kotlin.version}</version>
-					</dependency>
-<!--
-					<dependency>
-						<groupId>org.jetbrains.kotlin</groupId>
-						<artifactId>kotlin-maven-noarg</artifactId>
-						<version>${kotlin.version}</version>
-					</dependency>
--->
-<!--
-					<dependency>
-						<groupId>org.jetbrains.kotlin</groupId>
-						<artifactId>kotlin-annotation-processing</artifactId>
-						<version>1.1.2-3</version>
-					</dependency>
--->
+          <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-maven-allopen</artifactId>
+            <version>${kotlin.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-maven-noarg</artifactId>
+            <version>${kotlin.version}</version>
+          </dependency>
 				</dependencies>
 			</plugin>
 			<plugin>
@@ -172,4 +161,17 @@
 			</plugin>
 		</plugins>
 	</build>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
 </project>
