@@ -2,14 +2,12 @@ package jtonic.tmp.springbootkt;
 
 import com.google.common.base.MoreObjects;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 /**
  * Created by Antonel Ernest Pazargic on 13/05/2017.
  *
  * @author Antonel Ernest Pazargic
  */
-@Component
 @ConfigurationProperties(prefix = "server")
 public class ServerPropertiesJava {
     private String name;
