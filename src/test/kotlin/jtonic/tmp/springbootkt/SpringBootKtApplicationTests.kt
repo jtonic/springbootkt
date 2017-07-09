@@ -23,7 +23,7 @@ class SpringBootKtApplicationTests {
     fun testHelloRestController() {
         val response = trestTemplate.getForEntity("http://localhost:$port/kotlin/hello", String::class.java)
         println("response.body = ${response.body}")
-        Assert.assertThat(response.body, CoreMatchers.equalTo("Hello"))
+        Assert.assertThat(response.body, CoreMatchers.startsWith("Hello"))
     }
 
 }

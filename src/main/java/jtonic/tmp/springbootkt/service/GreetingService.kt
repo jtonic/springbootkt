@@ -1,5 +1,7 @@
 package jtonic.tmp.springbootkt.service
 
+import jtonic.tmp.springbootkt.constants.E
+import jtonic.tmp.springbootkt.constants.PI
 import org.springframework.stereotype.Service
 
 /**
@@ -9,6 +11,6 @@ import org.springframework.stereotype.Service
 @Service
 class GreetingService {
 
-    fun greet() = "Hello"
+    fun greet() = "Hello. PI= $PI, E= $E"
 
 }
