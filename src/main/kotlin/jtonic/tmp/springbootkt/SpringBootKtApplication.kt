@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean
 
 @SpringBootApplication
 @EnableConfigurationProperties(ServerPropertiesJava::class, ClientProperties::class)
-class SpringbootktApplication {
+class SpringBootKtApplication {
 
     @Bean
     fun init(
@@ -26,7 +26,7 @@ class SpringbootktApplication {
     companion object {
 
         @JvmStatic fun main(args: Array<String>) {
-            SpringApplication.run(SpringbootktApplication::class.java, *args)
+            SpringApplication.run(SpringBootKtApplication::class.java, *args)
         }
     }
 
