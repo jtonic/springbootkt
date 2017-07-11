@@ -1,4 +1,4 @@
-package jtonic.tmp.springbootkt.miscs
+package jtonic.tmp.springbootkt.miscs.ch4
 
 /**
  * Created by Antonel Ernest Pazargic on 07/07/2017.
