@@ -1,4 +1,4 @@
-package jtonic.tmp.springbootkt.miscs.ch3
+package jtonic.tmp.springbootkt.progkt.ch3
 
 /**
  * Created by Antonel Ernest Pazargic on 11/07/2017.

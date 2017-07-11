@@ -1,4 +1,4 @@
-package jtonic.tmp.springbootkt.miscs.ch6
+package jtonic.tmp.springbootkt.progkt.ch6
 
 import kotlin.properties.Delegates
 
