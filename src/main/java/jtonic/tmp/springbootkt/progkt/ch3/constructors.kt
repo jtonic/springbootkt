@@ -2,6 +2,7 @@ package jtonic.tmp.springbootkt.progkt.ch3
 
 /**
  * Created by Antonel Ernest Pazargic on 11/07/2017.
+ * Default values for constructor parameters
  * @author Antonel Ernest Pazargic
  */
 
@@ -9,8 +10,18 @@ package jtonic.tmp.springbootkt.progkt.ch3
 fun main(args: Array<String>) {
     val person1 = Person("Antonel", "Pazargic", 29)
     println(person1)
+
+    val cat = Animal(name = "cat", speed = 40, height = 0.25)
+    val dog = Animal(name = "dog", speed = 45, hairColor = "gray")
+    println("cat = $cat")
+    println("dog = $dog")
+
+    val doc = MyDocument(size = 100, version = 2)
+    print(doc)
+
     val person2 = Person(firstName = "Irina", age = 0, lastName = " ")
     println(person2)
+
 }
 
 class Person(val firstName: String, val lastName: String, val age: Int?) {
@@ -25,6 +36,10 @@ class Person(val firstName: String, val lastName: String, val age: Int?) {
             require(age in 1..150, { "Invalid argument age" })
         }
     }
+}
+
+class Animal(val name: String, val hairColor: String = "Brown", val speed: Int = 30, val height: Double = 0.5) {
+    override fun toString() = "Animal(name='$name', hairColor='$hairColor', speed=$speed, height=$height)"
 }
 
 
