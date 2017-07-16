@@ -10,12 +10,52 @@ package jtonic.tmp.springbootkt.progkt.ch4
  */
 
 fun main(args: Array<String>) {
+    tuples()
     f1()
     printArea(100, 2)
     greeting(name = "Tony")
     greeting()
     fizzbuzz(1, 16)
 }
+
+fun tuples() {
+    println("======= Pair =========")
+    val pair = "key" to "value"
+    val (a, b) = pair
+    println("pair = $pair")
+    println("a = $a")
+    println("b = $b")
+    println("pair.first = ${pair.first}")
+    println("pair.second = ${pair.second}")
+
+
+    println("======= Triple =========")
+    val triple = Triple("one", "two", "three")
+    val (p, q, r) = triple
+    println("triple = $triple")
+    println("p = $p")
+    println("q = $q")
+    println("r = $r")
+
+    println("triple.first = ${triple.first}")
+    println("triple.second = ${triple.second}")
+    println("triple.third = ${triple.third}")
+
+
+    println("======= Tuple4 =========")
+    println("Kotlin does not support TupleX because there is no meaning of the tuples fields")
+    val fourth = Tuple4("one", "thow", "three", "four")
+    val (c, d, e, f) = fourth
+
+    println("fourth = $fourth")
+    println("c = $c")
+    println("d = $d")
+    println("e = $e")
+    println("f = $f")
+
+}
+
+data class Tuple4<out T, out U, out V, out Y>(val one: T, val two: U, val three: V, val four: Y)
 
 val f1 = {println("This is a function literal")}
 
