@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController
  * @author Antonel Ernest Pazargic
  */
 @RestController
-@RequestMapping(path = arrayOf("/kotlin"))
+@RequestMapping("/kotlin")
 class GreetingController(val greetingService: GreetingService) {
 
-    @GetMapping(path = arrayOf("/hello"))
+    @GetMapping("/hello")
     fun hello() = greetingService.greet()
 }
