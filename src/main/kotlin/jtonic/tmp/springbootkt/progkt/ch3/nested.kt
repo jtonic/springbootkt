@@ -7,9 +7,13 @@ package jtonic.tmp.springbootkt.progkt.ch3
 
 
 class BasicGraph(val name: String) {
-    class Line(val x1: Int, val y1: Int, val x2: Int, val y2: Int) {
+
+    private val graphName: String = name
+
+    inner class Line(val x1: Int, val y1: Int, val x2: Int, val y2: Int) {
         fun draw(): Unit {
-            println("Drawing Line from ($x1:$y1) to ($x2:$y2)")
+            println("Drawing Line from ($x1:$y1) to ($x2:$y2) in graph named: $graphName")
+            this@BasicGraph.draw()
         }
     }
     fun draw(): Unit {
@@ -18,6 +22,6 @@ class BasicGraph(val name: String) {
 }
 
 fun main(args: Array<String>) {
-    val line = BasicGraph.Line(1, 0, -2, 0)
+    val line = BasicGraph("Basic graph").Line(1, 0, -2, 0)
     line.draw()
 }
