@@ -15,8 +15,8 @@ fun main(args: Array<String>) {
 
     println("name = $name")
 
-    println("asString = ${asString}")
-    println("asInt = ${asInt}")
+    println("asString = $asString")
+    println("asInt = $asInt")
 
 
 }

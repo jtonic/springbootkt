@@ -1,29 +1,35 @@
 package jtonic.tmp.springbootkt
 
+import io.kotlintest.Spec
+import io.kotlintest.specs.ShouldSpec
 import org.hamcrest.CoreMatchers
 import org.junit.Assert
-import org.junit.Test
-import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.web.server.LocalServerPort
-import org.springframework.test.context.junit4.SpringRunner
+import org.springframework.test.context.TestContextManager
 
-@RunWith(SpringRunner::class)
+//@RunWith(SpringRunner::class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-class SpringBootKtApplicationTests {
+class SpringBootKtApplicationTests : ShouldSpec() {
 
-    @Autowired lateinit var trestTemplate: TestRestTemplate
+    @Autowired lateinit var restTemplate: TestRestTemplate
 
-    @LocalServerPort var port: Int? = null
+    @LocalServerPort private var port: Int? = null
 
-    @Test
-    fun testHelloRestController() {
-        val response = trestTemplate.getForEntity("http://localhost:$port/kotlin/hello", String::class.java)
-        println("response.body = ${response.body}")
-        Assert.assertThat(response.body, CoreMatchers.startsWith("Hello"))
+    override fun interceptSpec(context: Spec, spec: () -> Unit) {
+        TestContextManager(context.javaClass).prepareTestInstance(context)
+        spec()
+    }
+
+    init {
+        should("call the hello endpoint") {
+            val response = restTemplate.getForEntity("http://localhost:$port/kotlin/hello", String::class.java)
+            println("response.body = ${response.body}")
+            Assert.assertThat(response.body, CoreMatchers.startsWith("Hello"))
+        }
     }
 
 }
