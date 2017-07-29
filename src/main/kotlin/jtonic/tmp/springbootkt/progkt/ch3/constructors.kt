@@ -1,12 +1,5 @@
 package jtonic.tmp.springbootkt.progkt.ch3
 
-/**
- * Created by Antonel Ernest Pazargic on 11/07/2017.
- * Default values for constructor parameters
- * @author Antonel Ernest Pazargic
- */
-
-
 fun main(args: Array<String>) {
     val person1 = Person("Antonel", "Pazargic", 29)
     println(person1)
@@ -36,10 +29,15 @@ class Person(val firstName: String, val lastName: String, val age: Int?) {
             require(age in 1..150, { "Invalid argument age" })
         }
     }
+
+    operator fun component1() = this.firstName
+    operator fun component2() = this.lastName
+    operator fun component3() = this.age
 }
 
 class Animal(val name: String, val hairColor: String = "Brown", val speed: Int = 30, val height: Double = 0.5) {
     override fun toString() = "Animal(name='$name', hairColor='$hairColor', speed=$speed, height=$height)"
 }
+
 
 
