@@ -1,5 +1,6 @@
 package jtonic.tmp.springbootkt
 
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -12,6 +13,7 @@ class SpringBootKtApplication {
 
     @Bean
     fun init(
+            @Value("\${client.name}") clientName: String,
             clientProperties: ClientProperties,
             serverProperties: ServerPropertiesJava,
             printerService: PrinterService,
@@ -21,6 +23,7 @@ class SpringBootKtApplication {
         println("printService.name = ${printService.name}")
         println("Server name: " + serverProperties.name)
         println("Client name = ${clientProperties.name}")
+        println("Client name = $clientName")
     }
 
     companion object {
