@@ -22,6 +22,8 @@
     <spring-boot.version>2.0.0.M2</spring-boot.version>
     <spring-cloud.version>Finchley.M1</spring-cloud.version>
     <kotlintest.version>2.0.4</kotlintest.version>
+    <aspectjrt.version>1.6.8</aspectjrt.version>
+    <aspectjweaver.version>1.8.10</aspectjweaver.version>
   </properties>
 
 	<dependencies>
@@ -98,9 +100,18 @@
       <version>1.0.0-M4</version>
       <scope>test</scope>
     </dependency>
-	</dependencies>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjrt</artifactId>
+      <version>${aspectjrt.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>${aspectjweaver.version}</version>
+    </dependency>
+  </dependencies>
   
-
 	<build>
 		<plugins>
 			<plugin>

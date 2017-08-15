@@ -3,6 +3,8 @@ package jtonic.tmp.springbootkt.service
 import org.springframework.cache.annotation.CacheConfig
 import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
+import org.springframework.validation.annotation.Validated
+import javax.validation.constraints.NotNull
 
 /**
  * Created by Antonel Ernest Pazargic on 15/08/2017.
@@ -11,12 +13,12 @@ import org.springframework.stereotype.Service
 
 @Service
 @CacheConfig(cacheNames = arrayOf("countries"))
+@Validated
 class CountryRetrieveService {
 
     private val countryCodes = mapOf("ro"  to "Romania", "fr" to "France")
 
     @Cacheable(key = "#code")
-    fun findByCode(code: String?): String {
-        return countryCodes[code]?: "no country"
-    }
+    @Validated
+    fun findByCode(@NotNull code: String?) = countryCodes[code]?: "no country"
 }

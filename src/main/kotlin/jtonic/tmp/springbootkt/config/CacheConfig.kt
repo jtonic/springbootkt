@@ -7,6 +7,6 @@ import org.springframework.context.annotation.Configuration
  * Created by Antonel Ernest Pazargic on 15/08/2017.
  * @author Antonel Ernest Pazargic
  */
-@EnableCaching(proxyTargetClass = true)
+@EnableCaching(proxyTargetClass = true, order = 20)
 @Configuration
 class CacheConfig
