@@ -4,6 +4,7 @@ import jtonic.tmp.springbootkt.service.GreetingService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 /**
@@ -11,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController
  * @author Antonel Ernest Pazargic
  */
 @RestController
-@RequestMapping("/kotlin")
+@RequestMapping("/greeting")
 class GreetingController(val greetingService: GreetingService) {
 
-    @GetMapping("/hello", produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE])
-    fun hello() = greetingService.greet()
+    @GetMapping("/hello", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE))
+    fun hello(@RequestParam("name") name: String?) = greetingService.greet(name)
 }
