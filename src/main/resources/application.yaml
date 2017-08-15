@@ -1,6 +1,7 @@
 
 server:
   name: My server
+  port: 8080
 
 server:
   host:
@@ -9,3 +10,20 @@ server:
 
 client:
   name: My client
+
+feign:
+  client:
+    default:
+      connect-timeout:    5000
+      read-timeout:       5000
+      logging-level:      FULL
+
+ribbon:
+  eureka:
+    enabled: false
+
+greeting-service:
+      ribbon:
+          listOfServers:    localhost:9090
+          ReadTimeout:      5000
+          MaxAutoRetries:   2

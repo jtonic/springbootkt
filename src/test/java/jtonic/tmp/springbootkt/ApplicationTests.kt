@@ -13,7 +13,7 @@ import org.springframework.test.context.TestContextManager
 
 //@RunWith(SpringRunner::class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-class SpringBootKtApplicationTests : ShouldSpec() {
+class ApplicationTests : ShouldSpec() {
 
     @Autowired lateinit var restTemplate: TestRestTemplate
 
