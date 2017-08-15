@@ -1,5 +1,6 @@
 package jtonic.tmp.springbootkt.controller
 
+import jtonic.tmp.springbootkt.service.CountryRetrieveService
 import jtonic.tmp.springbootkt.service.GreetingService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping
@@ -13,8 +14,11 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController
 @RequestMapping("/greeting")
-class GreetingController(val greetingService: GreetingService) {
+class GreetingController(val greetingService: GreetingService, val countryRetrieveService: CountryRetrieveService) {
 
     @GetMapping("/hello", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE))
     fun hello(@RequestParam("name") name: String?) = greetingService.greet(name)
+
+    @GetMapping("/country")
+    fun youAreFrom(@RequestParam("country_code") countryCode: String?) = countryRetrieveService.findByCode(countryCode)
 }
