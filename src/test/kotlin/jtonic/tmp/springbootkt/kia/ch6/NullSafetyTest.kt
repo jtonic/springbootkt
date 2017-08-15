@@ -1,6 +1,7 @@
 package jtonic.tmp.springbootkt.kia.ch6
 
 import io.kotlintest.matchers.shouldBe
+import io.kotlintest.matchers.shouldThrow
 import org.junit.Test
 
 class Person(val firstName: String, val lastName: String) {
@@ -37,6 +38,19 @@ class NullSafetyTest {
         "Antonel".toPazargic() shouldBe Person("Antonel", "Pazargic")
         val noName: String? = null
         noName.toPazargic() shouldBe Person("Unborn", "Pazargic")
+    }
+
+    @Test
+    fun `test assert null`() {
+        getStringLength("Antonel") shouldBe 7
+        shouldThrow<KotlinNullPointerException> {
+            getStringLength(null)     // kotlin.KotlinNullPointerException
+        }
+    }
+
+    fun getStringLength(s: String?): Int {
+        val sNotNull: String = s!!
+        return sNotNull.length
     }
 }
 
