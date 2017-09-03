@@ -4,6 +4,7 @@ import io.kotlintest.matchers.haveSize
 import io.kotlintest.matchers.should
 import io.kotlintest.matchers.shouldBe
 import org.junit.Test
+import java.beans.PropertyChangeListener
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -43,5 +44,17 @@ class DelegatesTest {
         println("Accessing lazy property person's emails")
         println("person.emails = ${person.emails}")
         person.emails should haveSize(3)
+    }
+
+    @Test
+    fun `test property change support - useful for data binding`() {
+        val person = Person(name = "Antonel", age = 47, salary = 1000)
+        person.addPropertyChangeListener(PropertyChangeListener { println("${it.propertyName}: oldValue = ${it.oldValue}, newValue = ${it.newValue}") })
+
+        println("person.age = ${person.age}")
+        println("person.salary = ${person.salary}")
+
+        person.age = ++person.age
+        person.salary += 100
     }
 }

@@ -1,7 +1,28 @@
 package jtonic.tmp.springbootkt.kia.ch7
 
-data class Person(val name: String) {
+import java.beans.PropertyChangeListener
+import java.beans.PropertyChangeSupport
+import kotlin.properties.Delegates
+import kotlin.reflect.KProperty
+
+open class PropertyChangeAware {
+    protected val changeSupport = PropertyChangeSupport(this)
+
+    fun addPropertyChangeListener(propertyChangeListener: PropertyChangeListener) {
+        changeSupport.addPropertyChangeListener(propertyChangeListener)
+    }
+
+    fun removePropertyChangeListener(propertyChangeListener: PropertyChangeListener) {
+        changeSupport.removePropertyChangeListener(propertyChangeListener)
+    }
+}
+
+class Person(val name: String, age: Int = 30, salary: Int = 1500) : PropertyChangeAware() {
     val emails by lazy { getEmails(this) }
+
+    private val observer = { prop: KProperty<*>, oldValue: Int, newValue: Int -> changeSupport.firePropertyChange(prop.name, oldValue, newValue) }
+    var age: Int by Delegates.observable(initialValue = age, onChange = observer)
+    var salary: Int by Delegates.observable(initialValue = salary, onChange = observer)
 }
 
 fun getEmails(person: Person): Set<String> {
