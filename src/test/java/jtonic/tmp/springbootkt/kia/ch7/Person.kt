@@ -29,3 +29,14 @@ fun getEmails(person: Person): Set<String> {
     println("Getting all emails for person $person")
     return setOf("Email from antonel.pazargic@gmail.com", "Email from matei.cornea@ing.ro", "Email from andrei.flucus@ing.ro")
 }
+
+class Customer {
+    private var _attributes = hashMapOf<String, Any>()
+
+    fun setAttribute(name: String, value: Any) {
+        _attributes[name] = value
+    }
+
+    val name: String by _attributes
+    val age: Int by _attributes
+}

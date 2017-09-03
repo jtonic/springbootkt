@@ -57,4 +57,13 @@ class DelegatesTest {
         person.age = ++person.age
         person.salary += 100
     }
+
+    @Test
+    fun `test expando objects with delegation`() {
+        val customer = Customer()
+        customer.setAttribute(name = "name", value = "Antonel Ernest Pazargic")
+        customer.setAttribute(name = "age", value = 47)
+        customer.name shouldBe "Antonel Ernest Pazargic"
+        customer.age shouldBe 47
+    }
 }
