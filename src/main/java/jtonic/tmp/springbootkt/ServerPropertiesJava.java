@@ -10,20 +10,30 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @ConfigurationProperties(prefix = "server")
 public class ServerPropertiesJava {
-    private String name;
 
-    public String getName() {
-        return name;
-    }
+  private String name;
+  private Integer port;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    @Override
-    public String toString() {
-        return MoreObjects.toStringHelper(this)
-                          .add("name", name)
-                          .toString();
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Integer getPort() {
+    return port;
+  }
+
+  public void setPort(Integer port) {
+    this.port = port;
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+        .add("name", name)
+        .toString();
+  }
 }

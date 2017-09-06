@@ -6,7 +6,7 @@
 	<groupId>jtonic.tmp.springbootkt</groupId>
 	<artifactId>springbootkt</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>${packaging.type}</packaging>
 
 	<name>springbootkt</name>
 	<description>Demo project for Spring Boot</description>
@@ -219,6 +219,51 @@
       </plugin>
 		</plugins>
 	</build>
+
+  <profiles>
+    <profile>
+      <id>default</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <packaging.type>jar</packaging.type>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-tomcat</artifactId>
+          <version>${spring-boot.version}</version>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>tcserver</id>
+      <properties>
+        <packaging.type>war</packaging.type>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-tomcat</artifactId>
+          <version>${spring-boot.version}</version>
+          <scope>provided</scope>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>2.6</version>
+            <configuration>
+              <failOnMissingWebXml>false</failOnMissingWebXml>
+              <warName>${project.name}</warName>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
   <dependencyManagement>
     <dependencies>

@@ -13,6 +13,6 @@ import javax.validation.constraints.NotNull
 class GreetingService {
 
     @Validated
-    fun greet(@NotNull name: String?) = "Hello ${name ?: "noname"}"
+    fun greet(@NotNull name: String) = "Hello $name"
 
 }

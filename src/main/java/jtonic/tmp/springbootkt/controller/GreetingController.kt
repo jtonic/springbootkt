@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 class GreetingController(val greetingService: GreetingService, val countryRetrieveService: CountryRetrieveService) {
 
     @GetMapping("/hello", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE))
-    fun hello(@RequestParam("name") name: String?) = greetingService.greet(name)
+    fun hello(@RequestParam("name", required = false, defaultValue = "no name") name: String) = greetingService.greet(name)
 
     @GetMapping("/country")
     fun youAreFrom(@RequestParam("country_code") countryCode: String?) = countryRetrieveService.findByCode(countryCode)
