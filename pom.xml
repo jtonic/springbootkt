@@ -11,22 +11,22 @@
 	<name>springbootkt</name>
 	<description>Demo project for Spring Boot</description>
 
-	<properties>
+  <properties>
 		<kotlin.compiler.incremental>true</kotlin.compiler.incremental>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-    <kotlin.version>1.1.4-3</kotlin.version>
-    <!--<kotlin.version>1.1.3-2</kotlin.version>-->
     <guava.version>20.0</guava.version>
     <spring-boot.version>2.0.0.M2</spring-boot.version>
     <spring-cloud.version>Finchley.M1</spring-cloud.version>
     <kotlintest.version>2.0.4</kotlintest.version>
     <aspectjrt.version>1.6.8</aspectjrt.version>
     <aspectjweaver.version>1.8.10</aspectjweaver.version>
+    <kotlin.version>1.1.50</kotlin.version>
+    <serialization.version>0.1</serialization.version>
   </properties>
 
-	<dependencies>
+  <dependencies>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-feign</artifactId>
@@ -116,10 +116,26 @@
       <artifactId>jsr305</artifactId>
       <version>3.0.2</version>
     </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlinx</groupId>
+      <artifactId>kotlinx-serialization-runtime</artifactId>
+      <version>${serialization.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-reflect</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-stdlib</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
   </dependencies>
-  
+
 	<build>
 		<plugins>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -137,6 +153,7 @@
 						<plugin>spring</plugin>
 						<plugin>all-open</plugin>
 						<plugin>no-arg</plugin>
+            <plugin>kotlinx-serialization</plugin>
 					</compilerPlugins>
 					<jvmTarget>${java.version}</jvmTarget>
 				</configuration>
@@ -185,8 +202,24 @@
             <artifactId>kotlin-maven-noarg</artifactId>
             <version>${kotlin.version}</version>
           </dependency>
+          <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-maven-serialization-plugin</artifactId>
+            <version>${serialization.version}</version>
+            <exclusions>
+              <exclusion>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-reflect</artifactId>
+              </exclusion>
+              <exclusion>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-stdlib</artifactId>
+              </exclusion>
+            </exclusions>
+          </dependency>
 				</dependencies>
 			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -217,6 +250,19 @@
           <target>${java.version}</target>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.6.0</version>
+        <goals>
+          <goal>java</goal>
+        </goals>
+        <configuration>
+          <mainClass>jtonic.tmp.springbootkt.miscs.SerializationKt</mainClass>
+        </configuration>
+      </plugin>
+
 		</plugins>
 	</build>
 
@@ -302,14 +348,10 @@
       </snapshots>
     </repository>
     <repository>
-      <id>kotlin-eap-1.2</id>
-      <name>kotlin-eap-1.2</name>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <url>http://dl.bintray.com/kotlin/kotlin-eap-1.2</url>
+      <id>bintray-kotlin-kotlinx</id>
+      <name>bintray</name>
+      <url>https://kotlin.bintray.com/kotlinx</url>
     </repository>
-
   </repositories>
 
   <pluginRepositories>
@@ -330,14 +372,10 @@
       </snapshots>
     </pluginRepository>
     <pluginRepository>
-      <id>kotlin-dev</id>
-      <name>kotlin-dev</name>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <url>https://dl.bintray.com/kotlin/kotlin-dev/</url>
+      <id>bintray-kotlin-kotlinx</id>
+      <name>bintray-plugins</name>
+      <url>https://kotlin.bintray.com/kotlinx</url>
     </pluginRepository>
-
   </pluginRepositories>
 
 </project>
