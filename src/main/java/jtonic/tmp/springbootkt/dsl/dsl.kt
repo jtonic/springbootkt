@@ -34,3 +34,9 @@ infix fun Int.minutes(to: converted) = ConvertedWrapper(Duration.ofMinutes(this.
 infix fun Int.seconds(to: converted) = ConvertedWrapper(Duration.ofSeconds(this.toLong()))
 infix fun Int.millis(to: converted) = ConvertedWrapper(Duration.ofMillis(this.toLong()))
 infix fun Int.nanos(to: converted) = ConvertedWrapper(Duration.ofNanos(this.toLong()))
+
+
+fun buildString(builderAction: StringBuilder.() -> Unit) = with(StringBuilder()) {
+    builderAction()
+    toString()
+}

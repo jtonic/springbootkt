@@ -1,6 +1,8 @@
 package jtonic.tmp.springbootkt.dsl
 
+import io.kotlintest.matchers.should
 import io.kotlintest.matchers.shouldBe
+import io.kotlintest.matchers.startWith
 import org.junit.Test
 import java.time.temporal.ChronoUnit.HOURS
 import java.time.temporal.ChronoUnit.MILLIS
@@ -28,7 +30,7 @@ class TestDSLTest {
     }
 
     @Test
-    fun testDuration() {
+    fun `test duration with dsl`() {
         val minutesOfHour = 1 hours converted into MINUTES
         val secondsOfHour = 1 hours converted into SECONDS
 
@@ -45,5 +47,16 @@ class TestDSLTest {
 
         1 days converted into HOURS shouldBe 24L
         1 weeks converted into HOURS shouldBe 24 * 7L
+    }
+
+    @Test
+    fun `test buildString with dsl`() {
+        val statement = buildString {
+            append("Antonel")
+            append(" este cel mai tare")
+            append(" din parcare")
+        }
+
+        statement should startWith("Antonel")
     }
 }
