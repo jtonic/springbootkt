@@ -1,12 +1,25 @@
 package jtonic.tmp.springbootkt.kia.ch2
 
 import io.kotlintest.matchers.shouldBe
-import org.junit.Test
+import org.junit.jupiter.api.Disabled
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
-class Ch2Test {
+open class Ch2Test {
 
     @Test
-    fun `test smart case`() {
+    @Disabled
+    @DisplayName("This is an ignored test")
+    fun `ignored`() {
+    }
+
+    @Test
+    @ParameterizedTest
+    @ValueSource(strings = arrayOf("Antonel", "is the best"))
+    open fun `test smart case`(msg: String) {
+        println("msg = $msg")
         eval(Sum(Sum(Num(1), Num(4)), Num(2))) shouldBe 7
         eval(Num(10)) shouldBe 10
     }
