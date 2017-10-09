@@ -160,6 +160,12 @@
         </exclusion>
       </exclusions>
     </dependency>
+
+    <dependency>
+      <groupId>org.jetbrains.kotlinx</groupId>
+      <artifactId>kotlinx-html-jvm</artifactId>
+      <version>bootstrap-1.1.50-dev-1451-71</version>
+    </dependency>
   </dependencies>
 
 	<build>
@@ -397,6 +403,11 @@
       <id>bintray-kotlin-kotlinx</id>
       <name>bintray</name>
       <url>https://kotlin.bintray.com/kotlinx</url>
+    </repository>
+    <repository>
+      <id>bintray-kotlin-dev</id>
+      <name>kotlin-dev</name>
+      <url>https://dl.bintray.com/kotlin/kotlin-dev/</url>
     </repository>
   </repositories>
 
