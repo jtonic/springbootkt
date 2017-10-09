@@ -1,5 +1,7 @@
 package jtonic.tmp.springbootkt.delete
 
+import io.kotlintest.matchers.shouldBe
+import io.kotlintest.matchers.shouldThrow
 import org.junit.Test
 
 /**
@@ -32,10 +34,55 @@ class MiscTest {
         printFirstForCondition(l1, l2, "stopped")
     }
 
+    @Test
+    fun `higher order function`() {
+
+        fun higherOrder(exec: () -> String) = exec()
+
+        fun exec() = "This is mine"
+
+        higherOrder(::exec) shouldBe "This is mine"
+        higherOrder { "This is yours" } shouldBe "This is yours"
+
+    }
+
+    @Test
+    fun `lambda expression`() {
+        val sum1 = { x: Int, y: Int -> x + y }
+        sum1(1, 1) shouldBe 2
+
+        val sum2: (Int, Int) -> Int = { a, b -> a + b }
+        sum2(2, 2) shouldBe 4
+
+        val sum3 = fun(a: Int, b: Int) = a + b
+        sum3(3, 3) shouldBe 6
+    }
+
+    @Test
+    fun `destructuring`() {
+        val lst = mutableListOf(1, 2, 3, 4)
+        val (_, second, third) = lst
+        println("second: $second, third: $third")
+
+        val (first) = lst
+        first shouldBe 1
+
+        lst.single { it == 2 } shouldBe 2
+        lst.singleOrNull { it >= 2 } shouldBe null
+
+        val exc = shouldThrow<IndexOutOfBoundsException> {
+            val (fst: Int) = emptyList<Int>()
+            fst
+        }
+        exc.message shouldBe "Empty list doesn't contain element at index 0."
+
+
+    }
+
     private fun printFirstForCondition(l1: List<String>, l2: List<String>, criterion: String) {
-        val key1 = l1.zip(l2).firstOrNull { it.second ==  criterion}?.first ?: "n/a"
+        val key1 = l1.zip(l2).firstOrNull { it.second == criterion }?.first ?: "n/a"
         println("key1 = $key1")
-        val key2 = l1.zip(l2).firstOrNull { it.second ==  criterion}?.first ?: throw NoSuchElementException("Condition not met")
+        val key2 = l1.zip(l2).firstOrNull { it.second == criterion }?.first ?: throw NoSuchElementException("Condition not met")
         println("key2 = $key2")
     }
 
