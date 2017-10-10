@@ -1,5 +1,7 @@
 package jtonic.tmp.springbootkt.delete
 
+import io.kotlintest.matchers.beOfType
+import io.kotlintest.matchers.should
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.matchers.shouldThrow
 import org.junit.Test
@@ -31,6 +33,18 @@ class MiscTest {
         val sb = StringBuilder()
         sb.receiver()
         sb.toString() shouldBe "Antonel"
+    }
+
+    @Test
+    fun `with lambda with receiver`() {
+        val exp = StringBuilder("Antonel").run {
+            append(" este ")
+            append("un destept")
+            toString()
+        }
+
+        exp should  beOfType<String>()
+        exp shouldBe "Antonel este un destept"
     }
 
     @Test
