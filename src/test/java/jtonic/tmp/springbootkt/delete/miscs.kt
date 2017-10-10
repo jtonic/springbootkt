@@ -26,6 +26,14 @@ class MiscTest {
     }
 
     @Test
+    fun `lambda with receiver`() {
+        val receiver: StringBuilder.() -> Unit = { append("Antonel")}
+        val sb = StringBuilder()
+        sb.receiver()
+        sb.toString() shouldBe "Antonel"
+    }
+
+    @Test
     fun `zip and filter`() {
         val l1 = listOf("1", "2", "3")
         val l2 = listOf("on", "off", "on")
@@ -75,8 +83,6 @@ class MiscTest {
             fst
         }
         exc.message shouldBe "Empty list doesn't contain element at index 0."
-
-
     }
 
     private fun printFirstForCondition(l1: List<String>, l2: List<String>, criterion: String) {
